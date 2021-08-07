@@ -28,8 +28,8 @@ public class Main {
 			Scanner input = new Scanner(System.in);
 			System.out.println("Que querí: ");
 			try {
-				String opcion = input.next();
-				if (! input.equals("3")){
+				var opcion = input.nextInt();
+				if (opcion != 3){
 					System.out.println("elegiste: "+opcion);
 				}
 				else {
