@@ -90,12 +90,12 @@ public class Post {
     @Override
     public String toString() {
         return
-                "ID: " + postId + ", " +
+                "Post ID: " + postId + ", " +
                 "Date: " + postDate + ", " +
                 "Author: " + author + ", " +
                 "Type: " + type + ", " +
                 "Content: " + content + ", " +
                 "Likes: " + likes + ", " +
-                "Comments: " + comments + "; ";
+                "Comments: " + comments;
     }
 }

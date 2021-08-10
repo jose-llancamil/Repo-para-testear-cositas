@@ -80,11 +80,11 @@ public class User {
     @Override
     public String toString() {
         return
-                "ID: " + userId + ", " +
+                "User ID: " + userId + ", " +
                 "Username: " + userName + ", " +
                 "Password: " + password + ", " +
                 "User Post List :" + postList + ", " +
                 "Followers: " + followers + ", " +
-                "Following " + following + "; ";
+                "Following " + following;
     }
 }

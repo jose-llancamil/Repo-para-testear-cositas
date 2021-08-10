@@ -7,62 +7,15 @@ import com.paradigmas.TDA.User;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
     static LocalDate today = LocalDate.now();
     static String date = today.format(DateTimeFormatter.ofPattern("dd/MMM/yy"));
-    static ArrayList<Post> myTimeLine = new ArrayList<Post>();
-    static ArrayList<User> myUsers = new ArrayList<User>();
-    static String onlineUsers = new String();
+    static ArrayList<Post> myTimeLine = new ArrayList<>();
+    static ArrayList<User> myUsers = new ArrayList<>();
+    static String onlineUsers = "";
     static Socialnetwork mySocialNetwork = new Socialnetwork(1L,date,"Kiubo",onlineUsers,myTimeLine,myUsers);
-    static Scanner scanner = new Scanner(System.in);
-
-    public static void register(){
-        User newUser = null;
-        while(true){
-            System.out.println("Please input your username:");
-            String username = scanner.next();
-            ArrayList<Post> myPostList = new ArrayList<Post>();
-            ArrayList<String> myFollowers = new ArrayList<String>();
-            ArrayList<String> myFollowings = new ArrayList<String>();
-            long initialId = 0L;
-            newUser = new User(++initialId,username,null,myPostList,myFollowers,myFollowings);
-
-            if(myUsers.contains(newUser)){
-                System.out.println("This account already exists!\n");
-            }else{
-                break;
-            }
-        }
-        System.out.println("Please input your password:");
-        String password = scanner.next();
-        newUser.setPassword(password);
-        myUsers.add(newUser);
-        mySocialNetwork.setUserList(myUsers);
-        System.out.println("Account registration success!\n");
-    }
-
-
-    public static void loginUser(){
-        System.out.println("Username:");
-        String username2 = scanner.next();
-        System.out.println("Password:");
-        String password2 = scanner.next();
-        boolean isLogin = false;
-        Iterator it = myUsers.iterator();
-        while(it.hasNext()){
-            User userToLogin = (User) it.next();
-            if(userToLogin.getUserName().equals(username2) && userToLogin.getPassword().equals(password2)){
-                isLogin = true;
-                mySocialNetwork.setOnlineUser(username2);
-                System.out.println("login successful!\n");
-            }else{
-                System.out.println("Login failed!\n");
-            }
-        }
-    }
 
     public static void main(String[] args) {
         boolean menu = true;
@@ -86,17 +39,16 @@ public class Main {
                 var opcion = input.nextInt();
                 switch (opcion) {
                     case 1:
-                        register();
+                        Socialnetwork.register(mySocialNetwork);
                         break;
 
                     case 2:
-                        loginUser();
+                        Socialnetwork.login(mySocialNetwork);
                         break;
 
                     case 3:
                         //Se ejecuta si el usuario tiene sesión activa.
-                        System.out.println("Code to make a Post.");
-                        mySocialNetwork.addPost(mySocialNetwork);
+                        Socialnetwork.addPost(mySocialNetwork);
                         break;
 
                     case 4:
