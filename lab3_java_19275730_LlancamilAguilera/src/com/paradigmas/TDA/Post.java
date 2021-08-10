@@ -1,19 +1,18 @@
 package com.paradigmas.TDA;
 
-import java.util.Date;
 import java.util.List;
 
-public abstract class Post {
+public class Post {
     public static int count = 0;
     private long postId;
-    private Date postDate;
+    private String postDate;
     private String author;
     private String type;
     private String content;
     private int likes;
     private List<Reaction> comments;
 
-    public Post(int postId, Date postDate, String author, String type, String content, int likes, List<Reaction> comments) {
+    public Post(long postId, String postDate, String author, String type, String content, int likes, List<Reaction> comments) {
         setPostId(++count);
         this.postId = postId;
         this.postDate = postDate;
@@ -36,15 +35,15 @@ public abstract class Post {
         return postId;
     }
 
-    public void setPostId(int postId) {
+    public void setPostId(long postId) {
         this.postId = postId;
     }
 
-    public Date getPostDate() {
+    public String getPostDate() {
         return postDate;
     }
 
-    public void setPostDate(Date postDate) {
+    public void setPostDate(String postDate) {
         this.postDate = postDate;
     }
 
@@ -90,14 +89,13 @@ public abstract class Post {
 
     @Override
     public String toString() {
-        return "Post{" +
-                "postid=" + postId +
-                ", postdate=" + postDate +
-                ", author='" + author + '\'' +
-                ", type='" + type + '\'' +
-                ", content='" + content + '\'' +
-                ", like=" + likes +
-                ", comments=" + comments +
-                '}';
+        return
+                "ID: " + postId + ", " +
+                "Date: " + postDate + ", " +
+                "Author: " + author + ", " +
+                "Type: " + type + ", " +
+                "Content: " + content + ", " +
+                "Likes: " + likes + ", " +
+                "Comments: " + comments + "; ";
     }
 }

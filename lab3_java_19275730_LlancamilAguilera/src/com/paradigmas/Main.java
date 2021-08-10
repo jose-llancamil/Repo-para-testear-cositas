@@ -15,7 +15,8 @@ public class Main {
     static String date = today.format(DateTimeFormatter.ofPattern("dd/MMM/yy"));
     static ArrayList<Post> myTimeLine = new ArrayList<Post>();
     static ArrayList<User> myUsers = new ArrayList<User>();
-    static Socialnetwork mySocialNetwork = new Socialnetwork(1L,date,"Kiubo",myTimeLine,myUsers);
+    static String onlineUsers = new String();
+    static Socialnetwork mySocialNetwork = new Socialnetwork(1L,date,"Kiubo",onlineUsers,myTimeLine,myUsers);
     static Scanner scanner = new Scanner(System.in);
 
     public static void register(){
@@ -27,10 +28,10 @@ public class Main {
             ArrayList<String> myFollowers = new ArrayList<String>();
             ArrayList<String> myFollowings = new ArrayList<String>();
             long initialId = 0L;
-            newUser = new User(++initialId,username,null,false,myPostList,myFollowers,myFollowings);
+            newUser = new User(++initialId,username,null,myPostList,myFollowers,myFollowings);
 
             if(myUsers.contains(newUser)){
-                System.out.println("This account already exists!");
+                System.out.println("This account already exists!\n");
             }else{
                 break;
             }
@@ -40,9 +41,9 @@ public class Main {
         newUser.setPassword(password);
         myUsers.add(newUser);
         mySocialNetwork.setUserList(myUsers);
-        System.out.println("Account registration success!");
-        System.out.println("Current social network status: " + mySocialNetwork);
+        System.out.println("Account registration success!\n");
     }
+
 
     public static void loginUser(){
         System.out.println("Username:");
@@ -55,11 +56,10 @@ public class Main {
             User userToLogin = (User) it.next();
             if(userToLogin.getUserName().equals(username2) && userToLogin.getPassword().equals(password2)){
                 isLogin = true;
-                userToLogin.login();
-                System.out.println("login successful!");
-                System.out.println("Current online user: " + username2);
+                mySocialNetwork.setOnlineUser(username2);
+                System.out.println("login successful!\n");
             }else{
-                System.out.println("Login failed!");
+                System.out.println("Login failed!\n");
             }
         }
     }
@@ -67,8 +67,6 @@ public class Main {
     public static void main(String[] args) {
         boolean menu = true;
         while (menu) {
-            //Runtime.getRuntime().exec("cls");
-
             System.out.println("Welcome to Kiubo:");
             System.out.println("The chilean social network. \n");
             System.out.println(""
@@ -98,6 +96,7 @@ public class Main {
                     case 3:
                         //Se ejecuta si el usuario tiene sesión activa.
                         System.out.println("Code to make a Post.");
+                        mySocialNetwork.addPost(mySocialNetwork);
                         break;
 
                     case 4:
@@ -111,8 +110,7 @@ public class Main {
                         break;
 
                     case 6:
-                        //Se ejecuta si el usuario tiene sesión activa.
-                        System.out.println("Code to print the social network as a string.");
+                        System.out.println("Social network as a String: \n" + mySocialNetwork.toString());
                         break;
 
                     case 7:
@@ -135,7 +133,7 @@ public class Main {
                 }
 
             } catch (Exception e) {
-                System.out.println("ERROR");
+                System.out.println("Invalid option, please try again");
             }
         }
     }

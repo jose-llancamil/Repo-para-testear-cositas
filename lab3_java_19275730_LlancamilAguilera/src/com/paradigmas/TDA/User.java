@@ -7,17 +7,15 @@ public class User {
     private long userId;
     private String userName;
     private String password;
-    private boolean loginStatus;
     private List<Post> postList;
     private List<String> followers;
     private List<String> following;
 
-    public User(long userId, String userName, String password, boolean loginStatus, List<Post> postList, List<String> followers, List<String> following) {
+    public User(long userId, String userName, String password, List<Post> postList, List<String> followers, List<String> following) {
         setUserId(++count);
         this.userId = userId;
         this.userName = userName;
         this.password = password;
-        this.loginStatus = false;
         this.postList = postList;
         this.followers = followers;
         this.following = following;
@@ -55,14 +53,6 @@ public class User {
         this.password = password;
     }
 
-    public boolean isLoginStatus() {
-        return loginStatus;
-    }
-
-    public void setLoginStatus(boolean loginStatus) {
-        this.loginStatus = loginStatus;
-    }
-
     public List<Post> getPostList() {
         return postList;
     }
@@ -87,20 +77,14 @@ public class User {
         this.following = following;
     }
 
-    public void login() { loginStatus = true; }
-
-    public void logout() { loginStatus = false; }
-
     @Override
     public String toString() {
-        return "User{" +
-                "userid=" + userId +
-                ", username='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", loginstatus=" + loginStatus +
-                ", postList=" + postList +
-                ", followers=" + followers +
-                ", following=" + following +
-                '}';
+        return
+                "ID: " + userId + ", " +
+                "Username: " + userName + ", " +
+                "Password: " + password + ", " +
+                "User Post List :" + postList + ", " +
+                "Followers: " + followers + ", " +
+                "Following " + following + "; ";
     }
 }
